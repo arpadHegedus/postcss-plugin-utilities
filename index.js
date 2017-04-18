@@ -1,0 +1,23 @@
+module.exports = {
+    addDecls:               require('./inc/add-decls.js'),
+    addSides:               require('./inc/add-sides.js'),
+    calc:                   require('./inc/calc.js'),
+    filterObject:           require('./inc/filter-object.js'),
+    isBezier:               require('./inc/is-bezier.js'),
+    isBorder:               require('./inc/is-border.js'),
+    isBoxShadow:            require('./inc/is-box-shadow.js'),
+    isColor:                require('./inc/is-color.js'),
+    isCursor:               require('./inc/is-cursor.js'),
+    isHTML:                 require('./inc/is-html.js'),
+    isNumber:               require('./inc/is-number.js'),
+    isProperty:             require('./inc/is-property.js'),
+    isRegex:                require('exact-regex'),
+    isSizeList:             require('./inc/is-size-list.js'),
+    isSize:                 require('./inc/is-size.js'),    
+    isStep:                 require('./inc/is-step.js'),
+    isTextShadow:           require('./inc/is-text-shadow.js'),
+    isTime:                 require('./inc/is-time.js'),
+    isTransition:           require('./inc/is-transition.js'),
+    isURL:                  require('./inc/is-url.js'),
+    overwrite:              require('overwrite-object')
+}
