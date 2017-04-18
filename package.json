@@ -7,7 +7,7 @@
     "postcss",
     "framework"
   ],
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "MIT",
   "main": "index.js",
   "author": {
@@ -21,7 +21,7 @@
       "web": "http://arpadhegedus.com"
     }
   ],
-  "dev-dependencies": {
+  "dependencies": {
     "postcss": "^5.2.12",
     "exact-regex": "1.0.2",
     "overwrite-object": "1.0.4",
