@@ -8,16 +8,34 @@ module.exports = (add, css, rule, decl = null, selector = null, beforeAfter = 'b
     }
     if(selector === rule.selector) { selector = null; }
     if(selector) {
-        let newSelector = '';
+        let newSelector = '',
+            currentRule = rule,
+            atSelector = false,
+            ruleSelector = '';
+        if(currentRule) {
+            while(currentRule.type !== 'root') {
+                if(currentRule.type === 'atrule') {
+                    atSelector = `@${currentRule.name} ${currentRule.params}`;
+                } else {
+                    newRuleSelector = '';
+                    postcss.list.comma(ruleSelector).forEach((slc) => {
+                        let sprtr = (newRuleSelector === '')? '' : ',',
+                            newRuleSub = '';
+                        postcss.list.comma(currentRule.selector).forEach((sl) => {
+                            let spr = (newRuleSub === '')? '' : ',';
+                            newRuleSub = `${newRuleSub}${spr}${sl} ${slc}`;
+                        });
+                        newRuleSelector = `${newRuleSelector}${sprtr}${newRuleSub}`;
+                    });
+                    ruleSelector = newRuleSelector;
+                }
+                currentRule = currentRule.parent;
+            }
+        }
         postcss.list.comma(selector).forEach((select) => {
             let separator = (newSelector === '')? '' : ',';
             if(select.indexOf('&') !== -1) {
                 let subSelector = '';
-                    ruleSelector = rule.selector;
-                if(rule.type === 'atrule') {
-                    console.log(rule.parent.type);
-                    ruleSelector = (rule.parent && rule.parent.type === 'rule')? rule.parent.selector : '';
-                }
                 postcss.list.comma(ruleSelector).forEach((sel) => {
                     let sep = (subSelector === '')? '' : ',';
                     sel = select.replace(/\&/ig, sel);
@@ -28,10 +46,7 @@ module.exports = (add, css, rule, decl = null, selector = null, beforeAfter = 'b
             newSelector = `${newSelector}${separator}${select}`;
         });
         newSelector = `${newSelector} { ${toAdd} }`;
-        if(rule.type === 'atrule') {
-            newSelector = `@${rule.name} ${rule.params} { ${newSelector} }`;
-        }
-        console.log(newSelector);
+        if(atSelector) { newSelector = `${atSelector} { ${newSelector} }`; }        
         selector = newSelector;
     }
     if(selector && beforeAfter == 'before') {
