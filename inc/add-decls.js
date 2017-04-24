@@ -13,7 +13,12 @@ module.exports = (add, css, rule, decl = null, selector = null, beforeAfter = 'b
             let separator = (newSelector === '')? '' : ',';
             if(select.indexOf('&') !== -1) {
                 let subSelector = '';
-                postcss.list.comma(rule.selector).forEach((sel) => {
+                    ruleSelector = rule.selector;
+                if(rule.type === 'atrule') {
+                    console.log(rule.parent.type);
+                    ruleSelector = (rule.parent && rule.parent.type === 'rule')? rule.parent.selector : '';
+                }
+                postcss.list.comma(ruleSelector).forEach((sel) => {
                     let sep = (subSelector === '')? '' : ',';
                     sel = select.replace(/\&/ig, sel);
                     subSelector = `${subSelector}${sep}${sel}`;
@@ -22,12 +27,17 @@ module.exports = (add, css, rule, decl = null, selector = null, beforeAfter = 'b
             }
             newSelector = `${newSelector}${separator}${select}`;
         });
+        newSelector = `${newSelector} { ${toAdd} }`;
+        if(rule.type === 'atrule') {
+            newSelector = `@${rule.name} ${rule.params} { ${newSelector} }`;
+        }
+        console.log(newSelector);
         selector = newSelector;
     }
     if(selector && beforeAfter == 'before') {
-        css.insertBefore(rule, `${selector} { ${toAdd} }`);
+        css.insertBefore(rule, `${selector}`);
     } else if(selector && beforeAfter === 'after') {
-        css.insertAfter(rule, `${selector} { ${toAdd} }`);
+        css.insertAfter(rule, `${selector}`);
     } else if(decl && beforeAfter === 'before') {
         rule.insertBefore(decl, toAdd);
     } else if(decl && beforeAfter === 'after') {
