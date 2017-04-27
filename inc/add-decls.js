@@ -45,14 +45,15 @@ module.exports = (add, css, rule, decl = null, selector = null, beforeAfter = 'b
             }
             newSelector = `${newSelector}${separator}${select}`;
         });
+        
         newSelector = `${newSelector} { ${toAdd} }`;
         if(atSelector) { newSelector = `${atSelector} { ${newSelector} }`; }        
         selector = newSelector;
     }
     if(selector && beforeAfter == 'before') {
-        css.insertBefore(rule, `${selector}`);
+        css.append(selector);
     } else if(selector && beforeAfter === 'after') {
-        css.insertAfter(rule, `${selector}`);
+        css.append(selector);
     } else if(decl && beforeAfter === 'before') {
         rule.insertBefore(decl, toAdd);
     } else if(decl && beforeAfter === 'after') {
