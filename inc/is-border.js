@@ -1,9 +1,20 @@
+/**
+ * POSTCSS PLUGIN UTILITIES
+ * IS BORDER
+ * Check if a string is a border value
+ * version          1.0.0
+ * author           Arpad Hegedus <hegedus.arpad@gmail.com>
+ */
+
+// load dependencies
+let filter  =   require('./filter-object.js'),
+    isColor =   require('./is-color.js'),
+    isSize  =   require('./is-size.js'),
+    postcss =   require('postcss');
+
+// export plugin
 module.exports = (val) => {
     if(val === '0') { return true; }
-    let filter  =   require('./filter-object.js'),
-        isColor =   require('./is-color.js'),
-        isSize  =   require('./is-size.js'),
-        postcss =   require('postcss');
     val = postcss.list.space(val);
     try {
         let f = filter(val, {

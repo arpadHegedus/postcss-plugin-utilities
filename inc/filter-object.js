@@ -1,3 +1,12 @@
+/**
+ * POSTCSS PLUGIN UTILITIES
+ * FILTER OBECT
+ * Filter an array to property keys according to validations via rulesets
+ * version          1.0.0
+ * author           Arpad Hegedus <hegedus.arpad@gmail.com>
+ */
+
+// export plugin
 module.exports = (values, rules, defaults = null) => {
     if(!Array.isArray(values)) { return null; }
     let filteredObject = {},

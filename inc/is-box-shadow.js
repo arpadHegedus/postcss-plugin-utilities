@@ -1,8 +1,19 @@
+/**
+ * POSTCSS PLUGIN UTILITIES
+ * IS BOX SHADOW
+ * Check if a string is a box shadow value
+ * version          1.0.0
+ * author           Arpad Hegedus <hegedus.arpad@gmail.com>
+ */
+
+// load dependencies
+let filter  =   require('./filter-object.js'),
+    isColor =   require('./is-color.js'),
+    isSize  =   require('./is-size.js'),
+    postcss =   require('postcss');
+
+// export plugin
 module.exports = (val) => {
-    let filter  =   require('./filter-object.js'),
-        isColor =   require('./is-color.js'),
-        isSize  =   require('./is-size.js'),
-        postcss =   require('postcss');
     val = postcss.list.comma(val);
     try {
         val.forEach((v) => {

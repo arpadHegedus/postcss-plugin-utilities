@@ -1,8 +1,10 @@
 module.exports = {
-    addDecls:               require('./inc/add-decls.js'),
-    addSides:               require('./inc/add-sides.js'),
     calc:                   require('./inc/calc.js'),
+    contrastColor:          require('./inc/contrast-color.js'),
+    eachSelector:           require('./inc/each-selector.js'),
     filterObject:           require('./inc/filter-object.js'),
+    getSides:               require('./inc/get-sides.js'),
+    hexToRGB:               require('./inc/hex-to-rgb.js'),
     isBezier:               require('./inc/is-bezier.js'),
     isBorder:               require('./inc/is-border.js'),
     isBoxShadow:            require('./inc/is-box-shadow.js'),
@@ -19,5 +21,7 @@ module.exports = {
     isTime:                 require('./inc/is-time.js'),
     isTransition:           require('./inc/is-transition.js'),
     isURL:                  require('./inc/is-url.js'),
+    rgbToHex:               require('./inc/rgb-to-hex.js'),
+    nameToHex:              require('./inc/name-to-hex.js'),
     overwrite:              require('overwrite-object')
 }

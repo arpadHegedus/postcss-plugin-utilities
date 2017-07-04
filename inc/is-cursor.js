@@ -1,6 +1,17 @@
+/**
+ * POSTCSS PLUGIN UTILITIES
+ * IS CURSOR
+ * Check if a string is a cursor value
+ * version          1.0.0
+ * author           Arpad Hegedus <hegedus.arpad@gmail.com>
+ */
+
+// load dependencies
+let postcss =   require('postcss'),
+    regx    =   require('exact-regex');
+
+// export plugin
 module.exports = (val) => {
-    let postcss =   require('postcss'),
-        regx    =   require('exact-regex');
     val = postcss.list.comma(val);
     try {
         val.forEach((v) => {
