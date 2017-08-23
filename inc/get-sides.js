@@ -2,7 +2,7 @@
  * POSTCSS PLUGIN UTILITIES
  * GET SIDES
  * Get sides information according to property rules
- * version          1.0.0
+ * version          1.0.1
  * author           Arpad Hegedus <hegedus.arpad@gmail.com>
  */
 
@@ -25,19 +25,17 @@ module.exports = (value, rules) => {
     // filter object
     value = filterObject(value, rules);
 
-    
-
-    // remove null value properties
-    for(let [prop, val] of Object.entries(value)) {
-        if(val === 'null') { delete value[prop]; }
-    }
-
     // fill opposite sides if they have value
     if(value.hasOwnProperty(keys.top) && !value.hasOwnProperty(keys.bottom)) {
         value[keys.bottom] = value[keys.top];
     }
     if(value.hasOwnProperty(keys.right) && !value.hasOwnProperty(keys.left)) {
         value[keys.left] = value[keys.right];
+    }
+
+    // remove null value properties
+    for (let [prop, val] of Object.entries(value)) {
+        if (val === 'null') { delete value[prop]; }
     }
 
     return value;
