@@ -11,6 +11,6 @@ module.exports = (node) => {
     let parent = node.parent;
     node.remove();
     if (parent && parent.nodes.lenght == 0) {
-        this(parent);
+        module.exports(parent);
     }
 };

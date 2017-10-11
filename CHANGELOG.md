@@ -1,3 +1,6 @@
+# 2.1.1 - 2017-10-11
+* Fixing some issues with new modules
+
 # 2.1.0 - 2017-10-11
 * Added new module: removeNode
 * Added new module: sassGetVar
