@@ -20,8 +20,11 @@ module.exports = {
     isTextShadow:           require('./inc/is-text-shadow.js'),
     isTime:                 require('./inc/is-time.js'),
     isTransition:           require('./inc/is-transition.js'),
-    isURL:                  require('./inc/is-url.js'),
-    rgbToHex:               require('./inc/rgb-to-hex.js'),
+    isURL:                  require('./inc/is-url.js'),    
     nameToHex:              require('./inc/name-to-hex.js'),
-    overwrite:              require('overwrite-object')
+    overwrite:              require('overwrite-object'),
+    removeNode:             require('./inc/remove-node.js'),
+    rgbToHex:               require('./inc/rgb-to-hex.js'),
+    sassHasVar:             require('./inc/sass-has-var.js'),
+    sassGetVar:             require('./inc/sass-get-var.js')
 }
