@@ -2,7 +2,7 @@
  * POSTCSS PLUGIN UTILITIES
  * SASS FUNCTION
  * Parse a SASS function and call a JS function on it
- * version          1.0.0
+ * version          1.0.1
  * author           Arpad Hegedus <hegedus.arpad@gmail.com>
  */
 
@@ -13,9 +13,12 @@ let parser = require('postcss-value-parser');
 function parse (value, funcName, func) {
     value = parser(value)
     value.walk(node => {
-        if (node.type === 'function' && node.value = funcName) {
+        if (node.type === 'function' && node.value === funcName) {
             let args = []
-            node.nodes.forEach(n => { if (n.type === 'word') args.push(n.value) })
+            node.nodes.forEach(n => {
+              if (n.type === 'function') args.push(parser.stringify(n))
+              if (n.type === 'word' || n.type === 'string') args.push(n.value)
+            })
             node.type = 'word'
             node.value = func(...args)
         }
