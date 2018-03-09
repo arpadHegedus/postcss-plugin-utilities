@@ -76,6 +76,10 @@ let util = require('postcss-plugin-utilities'),
     // }
 ```
 
+### getRGB(color)
+
+Get an object of RGB and possibly A values from a color string
+
 ### getSides(values, rules)
 
 Wrap filter object and return sides values the same way as margin and padding works in CSS
@@ -159,6 +163,10 @@ Return true if a value is a valid text-shadow
 
 Return true if a value is a valid time (eg.: 3s)
 
+### isTransition(value)
+
+Check if a string is a transition value
+
 ### isURL(value)
 
 Return true if a value is a valid CSS URL
@@ -167,10 +175,26 @@ Return true if a value is a valid CSS URL
 
 Convert a named color to its hex value
 
+### overwrite(valuesObj, defaultObj)
+
+Merge two arrays with the same properties to be overwritten with values (uses [overwrite-object])
+
+### removeNode(node)
+
+Recursively delete nodes
+
 ### rgbToHex(rgbValue)
 
 Convert an RGB value to its hex value
 
-### overwrite(valuesObj, defaultObj)
+### sassFunction(nodes, funcName, func)
 
-Merge two arrays with the same properties to be overwritten with values (uses [overwrite-object])
+Parse a SASS function and call a JS function on it
+
+### sassGetVar(variable, node)
+
+Get the value of a sass variable
+
+### sassHasVar(variable, node)
+
+Check if sass variable exists

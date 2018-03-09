@@ -3,6 +3,7 @@ module.exports = {
     contrastColor:          require('./inc/contrast-color.js'),
     eachSelector:           require('./inc/each-selector.js'),
     filterObject:           require('./inc/filter-object.js'),
+    getRGB:                 require('./inc/get-rgb.js'),
     getSides:               require('./inc/get-sides.js'),
     hexToRGB:               require('./inc/hex-to-rgb.js'),
     isBezier:               require('./inc/is-bezier.js'),
@@ -23,8 +24,10 @@ module.exports = {
     isURL:                  require('./inc/is-url.js'),    
     nameToHex:              require('./inc/name-to-hex.js'),
     overwrite:              require('overwrite-object'),
+    parseValue:             require('postcss-value-parser'),
     removeNode:             require('./inc/remove-node.js'),
     rgbToHex:               require('./inc/rgb-to-hex.js'),
+    sassFunction:           require('./inc/sass-function.js'),
     sassHasVar:             require('./inc/sass-has-var.js'),
     sassGetVar:             require('./inc/sass-get-var.js')
 }
