@@ -24,10 +24,10 @@ module.exports = {
     isURL:                  require('./inc/is-url.js'),    
     nameToHex:              require('./inc/name-to-hex.js'),
     overwrite:              require('overwrite-object'),
+    parseFunction:          require('./inc/parse-function.js'),
     parseValue:             require('postcss-value-parser'),
     removeNode:             require('./inc/remove-node.js'),
     rgbToHex:               require('./inc/rgb-to-hex.js'),
-    sassFunction:           require('./inc/sass-function.js'),
     sassHasVar:             require('./inc/sass-has-var.js'),
     sassGetVar:             require('./inc/sass-get-var.js')
 }

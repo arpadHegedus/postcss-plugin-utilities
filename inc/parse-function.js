@@ -1,7 +1,7 @@
 /**
  * POSTCSS PLUGIN UTILITIES
- * SASS FUNCTION
- * Parse a SASS function and call a JS function on it
+ * PARSE FUNCTION
+ * Parse a SASS OR CSS function and call a JS function on it
  * version          1.0.1
  * author           Arpad Hegedus <hegedus.arpad@gmail.com>
  */
@@ -10,11 +10,11 @@
 let parser = require('postcss-value-parser');
 
 // parse function
-function parse (value, funcName, func) {
+function parse (value, funcName, func, object) {
     value = parser(value)
     value.walk(node => {
         if (node.type === 'function' && node.value === funcName) {
-            let args = []
+            let args = [object]
             node.nodes.forEach(n => {
               if (n.type === 'function') args.push(parser.stringify(n))
               if (n.type === 'word' || n.type === 'string') args.push(n.value)
@@ -28,6 +28,6 @@ function parse (value, funcName, func) {
 
 // export plugin
 module.exports = (css, funcName, func) => {
-    css.walkAtRules(atrule => { atrule.params = parse(atrule.params, funcName, func) })
-    css.walkDecls(decl => { decl.value = parse(decl.value, funcName, func) })
+    css.walkAtRules(atrule => { atrule.params = parse(atrule.params, funcName, func, atrule) })
+    css.walkDecls(decl => { decl.value = parse(decl.value, funcName, func, decl) })
 }
