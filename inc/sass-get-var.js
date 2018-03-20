@@ -1,21 +1,37 @@
 /**
- * POSTCSS PLUGIN UTILITIES
- * SASS GET VAR
- * Get the value of a sass variable
- * version          1.0.0
- * author           Arpad Hegedus <hegedus.arpad@gmail.com>
+ * get the value of a sass variable
+ * @param {string} variable 
+ * @param {object} node 
  */
 
-// export plugin
-module.exports = (variable, node) => {
-    if (!variable || typeof variable !== 'string') { return null; }
-    if (variable.indexOf('$') === 0) { variable = variable.substring(1); }
-    let parent = (node.parent) ? node.parent : null,
-        v = null;
-    if (parent) {
-        parent.walkDecls(`$${variable}`, decl => { v = decl.value; });
-        if (v) { return v; }
-        return module.exports(variable, parent);
+function gather (variable, node) {
+  if (node.parent) {
+    let values = []
+    for (let n of Object.values(node.parent.nodes)) {
+      if (n.type === 'decl' && n.prop === `$${variable}`) {
+        values.push(n.value)
+      }
     }
-    return null;
-};
+    values.reverse()
+    let parentValues = node.parent.parent ? gather(variable, node.parent) : null
+    if (parentValues) {
+      values = values.concat(parentValues)
+    }
+    return values
+  }
+  return null
+}
+
+module.exports = (variable, node) => {
+  if (!variable || typeof variable !== 'string' || !node || typeof node !== 'object') return null
+  if (variable.indexOf('$') === 0) variable = variable.substring(1)
+  let value = null
+  let values = gather(variable, node)
+  if (!values) return null
+  console.log(values)
+  values.some(v => {
+    value = v
+    if (!value.endsWith('!default')) { return value }
+  })
+  return value
+}
