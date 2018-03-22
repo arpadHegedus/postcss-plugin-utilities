@@ -28,7 +28,6 @@ module.exports = (variable, node) => {
   let value = null
   let values = gather(variable, node)
   if (!values) return null
-  console.log(values)
   values.some(v => {
     value = v
     if (!value.endsWith('!default')) { return value }
