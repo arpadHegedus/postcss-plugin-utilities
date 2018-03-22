@@ -1,3 +1,6 @@
+# 2.2.1 - 2018-03-22
+* Removed accidental console log
+
 # 2.2.0 - 2018-03-09
 * Added new module: getRGB
 * Added new module: parseValue (postcss-value-parser)
