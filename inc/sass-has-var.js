@@ -8,14 +8,22 @@
 
 // export plugin
 module.exports = (variable, node) => {
-    if (!variable || typeof variable !== 'string') { return null; }
-    if (variable.indexOf('$') === 0) { variable = variable.substring(1); }
-    let parent = (node.parent) ? node.parent : null,
-        v = false;
-    if (parent) {
-        parent.walkDecls(`$${variable}`, decl => { v = true; });
-        if (v) { return true; }
-        return module.exports(variable, parent);
+  if (!variable || typeof variable !== "string") {
+    return null;
+  }
+  if (variable.indexOf("$") === 0) {
+    variable = variable.substring(1).split(" ")[0];
+  }
+  let parent = node.parent ? node.parent : null,
+    v = false;
+  if (parent) {
+    parent.walkDecls(`$${variable}`, decl => {
+      v = true;
+    });
+    if (v) {
+      return true;
     }
-    return false;
+    return module.exports(variable, parent);
+  }
+  return false;
 };

@@ -24,7 +24,7 @@ function gather (variable, node) {
 
 module.exports = (variable, node) => {
   if (!variable || typeof variable !== 'string' || !node || typeof node !== 'object') return null
-  if (variable.indexOf('$') === 0) variable = variable.substring(1)
+  if (variable.indexOf('$') === 0) variable = variable.substring(1).split(' ')[0]
   let value = null
   let values = gather(variable, node)
   if (!values) return null
