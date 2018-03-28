@@ -32,6 +32,7 @@ module.exports = (variable, node) => {
     value = v
     if (!value.endsWith('!default')) { return value }
   })
-  if (value.endsWith('!default')) { value = value.slice(0, -9).trim() }
+  if (value.endsWith('!default')) { value = value.slice(0, -8).trim() }
+  if (value.startsWith('$')) value = module.exports(value, node)
   return value
 }
